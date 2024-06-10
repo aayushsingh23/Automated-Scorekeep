@@ -6,7 +6,8 @@ pipeline {
         nodejs 'Node.js'
     }
     
-    stages {
-      echo "Print Hora"
-    }
+    steps {
+                echo "Print Hora"
+                // Add more build steps as needed
+            }
 }
