@@ -3,7 +3,7 @@ pipeline {
     
     tools {
         // Specify the correct Node.js installation name
-        nodejs 'Node.js'
+        nodejs 'NodeJS-22.2.0'
     }
     
     stages {
