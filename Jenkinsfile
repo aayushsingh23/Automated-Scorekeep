@@ -1,22 +1,26 @@
 pipeline {
     agent any
     
+    environment {
+        NODEJS_HOME = tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+    }
+    
     stages {
-        stage('Run Shell Commands in Project Directory') {
+        stage('Install Node.js') {
             steps {
-                    // Execute shell commands here
-                    sh '''
-                        PID=$(lsof -t -i:3000)
-
-                        if [ -n "$PID" ]; then
-                            echo "PID of server running on port 3000: $PID"
-                            kill "$PID"
-                        else
-                            echo "No server found running on port 3000"
-                        fi
-                    '''
-                
+                script {
+                    // Set PATH to include Node.js binaries
+                    env.PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
+                }
             }
         }
+        
+        stage('Build') {
+            steps {
+             echo "build hora"
+            }
+        }
+        
+        // Add more stages as needed
     }
 }
