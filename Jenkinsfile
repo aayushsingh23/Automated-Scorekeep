@@ -8,7 +8,7 @@ pipeline {
                     // Using ss to find and kill the process on port 3000
                     sh '''
                       echo "Checking for process on port 3000..."
-                        PID=$(ss -tuln | grep ':3000 ' | awk '{print $6}' | cut -d',' -f2)
+                        PID=$(ss -tulnp '( sport = :3000 )' | awk 'NR > 1 {print $6}' | cut -d',' -f1)
                         echo "Found PID: $PID"
                         if [ -n "$PID" ]; then
                             kill -9 $PID
