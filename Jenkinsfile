@@ -6,18 +6,18 @@ pipeline {
         nodejs 'Node.js'
     }
     
-    environment {
-        // Define NODEJS_HOME directly
-        NODEJS_HOME = tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
-    }
+    // environment {
+    //     // Define NODEJS_HOME directly
+    //     NODEJS_HOME = tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+    // }
     
     stages {
-        stage('Install Node.js') {
-            steps {
-                // Use the tool step to install Node.js
-                tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
-            }
-        }
+        // stage('Install Node.js') {
+        //     steps {
+        //         // Use the tool step to install Node.js
+        //         tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+        //     }
+        // }
 
         stage('Build') {
             steps {
