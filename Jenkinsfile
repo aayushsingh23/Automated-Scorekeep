@@ -4,21 +4,18 @@ pipeline {
         // Specify the correct Node.js installation name
         nodejs 'Node.js'
     }
-    // environment {
-    //     // Define NODEJS_HOME directly
-    //     NODEJS_HOME = tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
-    // }
+    environment {
+        // Define NODEJS_HOME directly
+        NODEJS_HOME = tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
+    }
     
     stages {
-        // stage('Install Node.js') {
-        //     steps {
-        //         script {
-        //             // Set PATH to include Node.js binaries
-        //             env.PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
-        //         }
-        //     }
-        // }
-
+stage('Install Node.js') {
+            steps {
+                // Use the tool step to install Node.js
+                tool name: 'Node.js', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+            }
+}
         stage('Build') {
             steps {
                 echo "Print Hora"
