@@ -5,18 +5,15 @@ pipeline {
         stage('Take Down Server') {
             steps {
                 script {
-                    // Find the PID of the Node.js server process
-                    def pidOutput = sh(script: 'pgrep -f "node server.js"', returnStdout: true).trim()
+                    // Find the PID of the process running on port 3000
+                    def pidOutput = sh(script: 'lsof -ti :3000', returnStdout: true).trim()
                     
                     if (pidOutput) {
-                        // Extract PID from the output
-                        def pid = pidOutput.tokenize()[0]
-                        
-                        // Stop the server process using its PID
-                        sh "kill $pid"
-                        echo "Node.js server process (PID: $pid) has been stopped."
+                        // Stop the process using its PID
+                        sh "kill $pidOutput"
+                        echo "Process running on port 3000 (PID: $pidOutput) has been stopped."
                     } else {
-                        echo "Node.js server process is not running."
+                        echo "No process found running on port 3000."
                     }
                 }
             }
