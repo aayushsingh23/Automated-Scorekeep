@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    
+        tools {
+        // Specify the Node.js installation by name
+        nodejs 'Node.js'
+    }
     environment {
         NODEJS_HOME = tool name: 'Node.js', type: 'hudson.plugins.nodejs.tools.NodeJSInstallation'
     }
