@@ -1,20 +1,17 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Take Down Server') {
             steps {
                 script {
-                    // Find the PID of the process running on port 3000
-                    def pidOutput = sh(script: '/usr/bin/lsof -ti :3000', returnStdout: true).trim()
-                    
-                    if (pidOutput) {
-                        // Stop the process using its PID
-                        sh "kill $pidOutput"
-                        echo "Process running on port 3000 (PID: $pidOutput) has been stopped."
-                    } else {
-                        echo "No process found running on port 3000."
-                    }
+                    // Using ss to find and kill the process on port 3000
+                    sh '''
+                        PID=$(ss -tuln | grep ':3000 ' | awk '{print $6}' | cut -d',' -f2)
+                        if [ -n "$PID" ]; then
+                            kill -9 $PID
+                        fi
+                    '''
                 }
             }
         }
