@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Define the Node.js version to install
-                    def nodejsVersion = '20.14.0'
+                    def nodejsVersion = '14.17.0'
                     
                     // Check if Node.js is already installed
                     def nodeHome = tool name: "NodeJS-${nodejsVersion}", type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
