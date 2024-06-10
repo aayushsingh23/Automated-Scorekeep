@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Find the PID of the process running on port 3000
-                    def pidOutput = sh(script: 'lsof -ti :3000', returnStdout: true).trim()
+                    def pidOutput = sh(script: '/usr/bin/lsof -ti :3000', returnStdout: true).trim()
                     
                     if (pidOutput) {
                         // Stop the process using its PID
