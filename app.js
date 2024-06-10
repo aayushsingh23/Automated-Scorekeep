@@ -20,6 +20,7 @@ p1Button.addEventListener('click', function () {
             p2Display.classList.add('has-text-danger');
             p1Button.disabled=true;
             p2Button.disabled=true;
+            console.log('Lesgo');
         }   
         p1Display.textContent = p1Score;
     }
@@ -33,6 +34,7 @@ p2Button.addEventListener('click', function () {
             p2Display.classList.add('has-text-success');
             p1Button.disabled=true;
             p2Button.disabled=true;
+            console.log('Lesgo');
         }
         p2Display.textContent = p2Score;
     }
