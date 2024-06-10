@@ -6,16 +6,16 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Take Down Server') {
             steps {
-                checkout scm
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'              
-
+                script {
+                    // Find the PID of the Node.js server process
+                    sh 'pid=$(pgrep -f "node server.js")'
+                    // Stop the server process using its PID
+                    sh 'kill $pid'
+                }
             }
         }
     }
+
 }
