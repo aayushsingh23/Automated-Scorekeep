@@ -2,8 +2,11 @@ pipeline {
     agent any
     
 
-    triggers{
-        cron('H * * * *')
+    // triggers{
+    //     cron('H * * * *')
+    // }
+    triggers {
+        cron('* * * * *') // Runs the pipeline every minute
     }
 
     tools {
