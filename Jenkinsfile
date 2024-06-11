@@ -57,7 +57,7 @@ pipeline {
                 script {
                     // Check if any server process is running
                     def runningProcesses = sh(script: "ps aux | grep '[s]erver.js'", returnStdout: true).trim()
-
+        
                     if (runningProcesses) {
                         echo "Server process(es) found. Killing..."
                         // Kill the server process
@@ -68,6 +68,7 @@ pipeline {
                 }
             }
         }
+
         
         stage('Start Server') {
             steps {
