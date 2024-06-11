@@ -52,32 +52,32 @@ pipeline {
        //      }
        //  }
         
-        stage('Install lsof') {
-            steps {
-                script {
-                    // Install lsof tool on Jenkins
-                    tool name: 'lsof', type: 'hudson.plugins.toolenv.ToolEnvBuildWrapper'
-                }
-            }
-        }
+        // stage('Install lsof') {
+        //     steps {
+        //         script {
+        //             // Install lsof tool on Jenkins
+        //             tool name: 'lsof', type: 'hudson.plugins.toolenv.ToolEnvBuildWrapper'
+        //         }
+        //     }
+        // }
         
-        stage('Kill Server on Port 3000') {
+        stage('Kill Server') {
             steps {
                 script {
-                    // Find the process ID (PID) listening on port 3000
-                    def PID = sh(script: 'lsof -t -i:3000', returnStdout: true).trim()
-
-                    if (PID) {
-                        // Kill the server process using the PID
-                        sh "kill $PID"
-                        echo "Server process running on port 3000 has been killed."
+                    // Find the process ID (PID) using ss
+                    def port = 3000 // Example port number
+                    def pid = sh(script: "ss -ltn | grep ':${port}' | awk '{print \$6}' | cut -d'=' -f2", returnStdout: true).trim()
+                    
+                    if (pid) {
+                        // Kill the process
+                        sh "sudo kill ${pid}"
+                        echo "Server process running on port ${port} has been killed."
                     } else {
-                        echo "No server process is listening on port 3000."
+                        echo "No server process is listening on port ${port}."
                     }
                 }
             }
         }
-        
         stage('Start Server') {
             steps {
                 // sh 'npm install express'
