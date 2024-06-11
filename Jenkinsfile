@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    
+
+    triggers{
+        crons('H * * * *')
+    }
     tools {
         // Specify the correct Node.js installation name
         nodejs 'NodeJS-22.2.0'
