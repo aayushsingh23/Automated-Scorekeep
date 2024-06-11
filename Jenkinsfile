@@ -45,40 +45,40 @@ pipeline {
                 }
             }
         }
-        // stage('Checkout') {
-        //     steps {
-        //         checkout scm
-        //     }
-        // }
-        // stage('Setup Node.js') {
-        //     steps {
-        //         script {
-        //             def nodeHome = tool name: 'NodeJS-22.2.0', type: 'NodeJSInstallation'
-        //             env.PATH = "${nodeHome}/bin:${env.PATH}"
-        //         }
-        //     }
-        // }
-        // stage('Create package.json') {
-        //     steps {
-        //         // Create package.json using npm init with default options
-        //         sh 'npm init -y'
-        //         // Verify package.json creation
-        //         sh 'cat package.json'
-        //     }
-        // }
-        // stage('Add Dependencies') {
-        //     steps {
-        //         // Install express as a dependency
-        //         sh 'npm install express'
-        //         // Verify the dependencies
-        //         sh 'cat package.json'
-        //     }
-        // }
-        // stage('Install Dependencies') {
-        //     steps {
-        //         sh 'npm install'
-        //     }
-        // }
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Setup Node.js') {
+            steps {
+                script {
+                    def nodeHome = tool name: 'NodeJS-22.2.0', type: 'NodeJSInstallation'
+                    env.PATH = "${nodeHome}/bin:${env.PATH}"
+                }
+            }
+        }
+        stage('Create package.json') {
+            steps {
+                // Create package.json using npm init with default options
+                sh 'npm init -y'
+                // Verify package.json creation
+                sh 'cat package.json'
+            }
+        }
+        stage('Add Dependencies') {
+            steps {
+                // Install express as a dependency
+                sh 'npm install express'
+                // Verify the dependencies
+                sh 'cat package.json'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
         // stage('Stop Server'){
         //     steps{
         //         script{
