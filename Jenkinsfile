@@ -81,7 +81,7 @@ pipeline {
 stage('Start Server') {
     steps {
         // sh 'npm install express'
-        sh 'node server.js > server.log 2>&1 &'
+        sh 'node server.js'
     }
 }
 
