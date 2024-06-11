@@ -81,22 +81,22 @@ pipeline {
             }
         }
 
-        stage('Stop Server') {
-            steps {
-                script {
-                    // Find the process ID (PID) of the server running on port 3000
-                    def pid = sh(script: 'lsof -t -i:3000', returnStdout: true).trim()
+        // stage('Stop Server') {
+        //     steps {
+        //         script {
+        //             // Find the process ID (PID) of the server running on port 3000
+        //             def pid = sh(script: 'lsof -t -i:3000', returnStdout: true).trim()
                     
-                    // If a process is found, kill it
-                    if (pid) {
-                        sh "kill -9 ${pid}"
-                        echo "Server on port 3000 has been stopped."
-                    } else {
-                        echo "No server running on port 3000."
-                    }
-                }
-            }
-        }
+        //             // If a process is found, kill it
+        //             if (pid) {
+        //                 sh "kill -9 ${pid}"
+        //                 echo "Server on port 3000 has been stopped."
+        //             } else {
+        //                 echo "No server running on port 3000."
+        //             }
+        //         }
+        //     }
+        // }
         stage('Build') {
             steps {
                  sh '${NODE_HOME}/bin/node --version'
