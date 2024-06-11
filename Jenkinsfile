@@ -24,6 +24,9 @@ pipeline {
                     
                     // Set the environment variable for NODE_HOME
                     env.NODE_HOME = nodeHome
+
+                    sh 'node --version'
+                    sh 'npm --version'
                 }
             }
         }
