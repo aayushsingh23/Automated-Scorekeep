@@ -30,11 +30,11 @@ pipeline {
                 }
             }
         }
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         checkout scm
+        //     }
+        // }
         stage('Setup Node.js') {
             steps {
                 script {
