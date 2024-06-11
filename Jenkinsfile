@@ -43,27 +43,27 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Create package.json') {
-            steps {
-                // Create package.json using npm init with default options
-                sh 'npm init -y'
-                // Verify package.json creation
-                sh 'cat package.json'
-            }
-        }
-        stage('Add Dependencies') {
-            steps {
-                // Install express as a dependency
-                sh 'npm install express'
-                // Verify the dependencies
-                sh 'cat package.json'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
+        // stage('Create package.json') {
+        //     steps {
+        //         // Create package.json using npm init with default options
+        //         sh 'npm init -y'
+        //         // Verify package.json creation
+        //         sh 'cat package.json'
+        //     }
+        // }
+        // stage('Add Dependencies') {
+        //     steps {
+        //         // Install express as a dependency
+        //         sh 'npm install express'
+        //         // Verify the dependencies
+        //         sh 'cat package.json'
+        //     }
+        // }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh 'npm install'
+        //     }
+        // }
         stage('Start Server') {
             steps {
                 sh 'node server.js'
