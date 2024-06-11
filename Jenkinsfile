@@ -11,17 +11,17 @@ pipeline {
 
     stages {
 
-        stage('Install lsof') {
-            steps {
-                script {
-                    // Update the package list and install lsof
-                    sh '''
-                        sudo apt-get update
-                        sudo apt-get install -y lsof
-                    '''
-                }
-            }
-        }
+        // stage('Install lsof') {
+        //     steps {
+        //         script {
+        //             // Update the package list and install lsof
+        //             sh '''
+        //                 sudo apt-get update
+        //                 sudo apt-get install -y lsof
+        //             '''
+        //         }
+        //     }
+        // }
         stage('Install Node.js') {
             steps {
                 script {
@@ -86,23 +86,23 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Stop Process on Port 50000') {
-            steps {
-                script {
-                    // Find the process ID (PID) of the process using port 50000 and kill it
-                    // This example uses shell commands for Linux/Unix environments
-                    sh '''
-                        PID=$(lsof -t -i:50000)
-                        if [ -n "$PID" ]; then
-                            echo "Killing process $PID running on port 50000"
-                            kill -9 $PID
-                        else
-                            echo "No process running on port 50000"
-                        fi
-                    '''
-                }
-            }
-        }
+        // stage('Stop Process on Port 50000') {
+        //     steps {
+        //         script {
+        //             // Find the process ID (PID) of the process using port 50000 and kill it
+        //             // This example uses shell commands for Linux/Unix environments
+        //             sh '''
+        //                 PID=$(lsof -t -i:50000)
+        //                 if [ -n "$PID" ]; then
+        //                     echo "Killing process $PID running on port 50000"
+        //                     kill -9 $PID
+        //                 else
+        //                     echo "No process running on port 50000"
+        //                 fi
+        //             '''
+        //         }
+        //     }
+        // }
         stage('Start Server') {
             steps {
                 // sh 'npm install express'
