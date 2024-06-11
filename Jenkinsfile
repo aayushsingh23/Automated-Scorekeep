@@ -64,9 +64,16 @@ pipeline {
         //         sh 'npm install'
         //     }
         // }
+        stage('Stop Server'){
+            steps{
+                script{
+                    sh 'pkill node'
+                }
+            }
+        }
         stage('Start Server') {
             steps {
-                sh 'npm install express'
+                // sh 'npm install express'
                 sh 'node server.js'
             }
         }
