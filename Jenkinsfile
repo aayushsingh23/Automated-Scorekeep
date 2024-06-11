@@ -1,6 +1,11 @@
 pipeline {
     agent any
     
+
+    triggers{
+        cron('H * * * *')
+    }
+
     tools {
         // Specify the correct Node.js installation name
         nodejs 'NodeJS-22.2.0'
@@ -46,11 +51,28 @@ pipeline {
        //          sh 'cat package.json'
        //      }
        //  }
+        
+        stage('Kill Server') {
+            steps {
+                script {
+                    // Check if any server process is running
+                    def runningProcesses = sh(script: "ps aux | grep '[s]erver.js'", returnStdout: true).trim()
 
+                    if (runningProcesses) {
+                        echo "Server process(es) found. Killing..."
+                        // Kill the server process
+                        sh "killall node"
+                    } else {
+                        echo "No server process running."
+                    }
+                }
+            }
+        }
+        
         stage('Start Server') {
             steps {
-                sh 'npm install express'
-                sh 'node server.js'
+                // sh 'npm install express'
+                sh 'nohup node server.js'
             }
         }
 
