@@ -8,8 +8,20 @@ pipeline {
         // Specify the correct Node.js installation name
         nodejs 'NodeJS-22.2.0'
     }
-    
+
     stages {
+
+        stage('Install lsof') {
+            steps {
+                script {
+                    // Update the package list and install lsof
+                    sh '''
+                        sudo apt-get update
+                        sudo apt-get install -y lsof
+                    '''
+                }
+            }
+        }
         stage('Install Node.js') {
             steps {
                 script {
