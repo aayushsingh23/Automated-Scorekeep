@@ -70,7 +70,7 @@ pipeline {
                     
                     if (pid) {
                         // Kill the process
-                        sh "sudo kill ${pid}"
+                        sh "kill ${pid}"
                         echo "Server process running on port ${port} has been killed."
                     } else {
                         echo "No server process is listening on port ${port}."
