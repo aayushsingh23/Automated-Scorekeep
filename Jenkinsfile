@@ -35,14 +35,14 @@ pipeline {
         //         checkout scm
         //     }
         // }
-        stage('Setup Node.js') {
-            steps {
-                script {
-                    def nodeHome = tool name: 'NodeJS-22.2.0', type: 'NodeJSInstallation'
-                    env.PATH = "${nodeHome}/bin:${env.PATH}"
-                }
-            }
-        }
+        // stage('Setup Node.js') {
+        //     steps {
+        //         script {
+        //             def nodeHome = tool name: 'NodeJS-22.2.0', type: 'NodeJSInstallation'
+        //             env.PATH = "${nodeHome}/bin:${env.PATH}"
+        //         }
+        //     }
+        // }
 
         stage('Install Dependencies') {
             steps {
