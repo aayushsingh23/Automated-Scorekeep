@@ -6,7 +6,7 @@ pipeline {
     //     cron('H * * * *')
     // }
     triggers {
-        cron('* * * * *') // Runs the pipeline every minute
+        cron('H * * * *') // Runs the pipeline every minute
     }
 
     tools {
