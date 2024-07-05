@@ -53,20 +53,26 @@ pipeline {
         stage('Kill Server') {
             steps {
                 script {
-                    // Find the process ID (PID) using netstat
-                    def port = 3000 // Example port number
-                    def pid = bat(script: "netstat -ano | findstr :${port}", returnStdout: true).trim()
+                    // Define the port to check
+                    def port = 3000
+        
+                    // Find the PID of the process listening on the specified port
+                    def netstatResult = bat(script: "netstat -ano | findstr :${port}", returnStdout: true).trim()
                     
-                    if (pid) {
-                        // Kill the process
+                    if (netstatResult) {
+                        // Extract PID from netstat result
+                        def pid = netstatResult.split()[-1]
+                        
+                        // Kill the process using the extracted PID
                         bat "taskkill /PID ${pid} /F"
-                        echo "Server process running on port ${port} has been killed."
+                        echo "Server process running on port ${port} with PID ${pid} has been killed."
                     } else {
                         echo "No server process is listening on port ${port}."
                     }
                 }
             }
         }
+
         
         stage('Start Server') {
             steps {
