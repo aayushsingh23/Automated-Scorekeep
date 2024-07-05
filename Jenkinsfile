@@ -54,28 +54,28 @@ pipeline {
         //     }
         // }
         
-        stage('Kill Server') {
-            steps {
-                script {
-                    // Define the port to check
-                    def port = 3000
+        // stage('Kill Server') {
+        //     steps {
+        //         script {
+        //             // Define the port to check
+        //             def port = 3000
         
-                    // Find the PID of the process listening on the specified port
-                    def netstatResult = bat(script: "netstat -ano | findstr :${port}", returnStdout: true).trim()
+        //             // Find the PID of the process listening on the specified port
+        //             def netstatResult = bat(script: "netstat -ano | findstr :${port}", returnStdout: true).trim()
                     
-                    if (netstatResult) {
-                        // Extract PID from netstat result
-                        def pid = netstatResult.split()[-1]
+        //             if (netstatResult) {
+        //                 // Extract PID from netstat result
+        //                 def pid = netstatResult.split()[-1]
                         
-                        // Kill the process using the extracted PID
-                        bat "taskkill /PID ${pid} /F"
-                        echo "Server process running on port ${port} with PID ${pid} has been killed."
-                    } else {
-                        echo "No server process is listening on port ${port}."
-                    }
-                }
-            }
-        }
+        //                 // Kill the process using the extracted PID
+        //                 bat "taskkill /PID ${pid} /F"
+        //                 echo "Server process running on port ${port} with PID ${pid} has been killed."
+        //             } else {
+        //                 echo "No server process is listening on port ${port}."
+        //             }
+        //         }
+        //     }
+        // }
 
         
         stage('Start Server') {
