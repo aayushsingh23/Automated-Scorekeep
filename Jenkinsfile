@@ -7,9 +7,9 @@ pipeline {
         nodejs 'NodeJS-22.2.0'
     }
 
-    triggers {
-        cron('H * * * *') // Runs the pipeline every minute
-    }
+    // triggers {
+    //     cron('H * * * *') // Runs the pipeline every minute
+    // }
     
     stages {
         // stage('Install Node.js') {
