@@ -76,28 +76,28 @@ pipeline {
         //         }
         //     }
         // }
-        // stage('Kill Server') {
-        //     when {
-        //         expression {
-        //             // Check if a process is listening on port 3000
-        //             def netstatResult = bat(script: "netstat -ano | findstr :3000", returnStdout: true).trim()
-        //             return netstatResult ? true : false
-        //         }
-        //     }
-        //     steps {
-        //         script {
-        //             // If the condition is met, kill the process
-        //             def port = 3000
-        //             def netstatResult = bat(script: "netstat -ano | findstr :${port}", returnStdout: true).trim()
+        stage('Kill Server') {
+            when {
+                expression {
+                    // Check if a process is listening on port 3000
+                    def netstatResult = bat(script: "netstat -ano | findstr :3000", returnStdout: true).trim()
+                    return netstatResult ? true : false
+                }
+            }
+            steps {
+                script {
+                    // If the condition is met, kill the process
+                    def port = 3000
+                    def netstatResult = bat(script: "netstat -ano | findstr :${port}", returnStdout: true).trim()
                     
-        //             if (netstatResult) {
-        //                 def pid = netstatResult.split()[-1]
-        //                 bat "taskkill /PID ${pid} /F"
-        //                 echo "Server process running on port ${port} with PID ${pid} has been killed."
-        //             }
-        //         }
-        //     }
-        // }
+                    if (netstatResult) {
+                        def pid = netstatResult.split()[-1]
+                        bat "taskkill /PID ${pid} /F"
+                        echo "Server process running on port ${port} with PID ${pid} has been killed."
+                    }
+                }
+            }
+        }
         
         stage('Start Server') {
             steps {
