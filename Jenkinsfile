@@ -36,23 +36,23 @@ pipeline {
         //     }
         // }
         
-        stage('Create package.json') {
-            steps {
-                // Create package.json using npm init with default options
-                bat 'npm init -y'
-                // Verify package.json creation
-                bat 'type package.json'
-            }
-        }
+        // stage('Create package.json') {
+        //     steps {
+        //         // Create package.json using npm init with default options
+        //         bat 'npm init -y'
+        //         // Verify package.json creation
+        //         bat 'type package.json'
+        //     }
+        // }
         
-        stage('Add Dependencies') {
-            steps {
-                // Install express as a dependency
-                bat 'npm install express'
-                // Verify the dependencies
-                bat 'type package.json'
-            }
-        }
+        // stage('Add Dependencies') {
+        //     steps {
+        //         // Install express as a dependency
+        //         bat 'npm install express'
+        //         // Verify the dependencies
+        //         bat 'type package.json'
+        //     }
+        // }
         
         stage('Kill Server') {
             steps {
