@@ -101,6 +101,7 @@ pipeline {
         
         stage('Start Server') {
             steps {
+                bat 'npm install express'
                 bat 'node server.js'
             }
         }
